@@ -182,7 +182,7 @@ These recommendations align with the project's business recommendations around s
 
 ## 📷 Dashboard Preview
 
-![CustomerPulse Dashboard](dashboard.png)
+![CustomerPulse Dashboard](https://github.com/polonimmo115a/customerpulse1-consumer-behavior-analysis/blob/main/Consumer%20Behavior%20Analysis%20dashboard.png)
 
 ---
 
