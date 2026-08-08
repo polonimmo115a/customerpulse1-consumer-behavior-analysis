@@ -65,6 +65,11 @@ Key data preparation steps:
 - Loaded and explored the dataset using Pandas
 - Performed structural and statistical analysis
 - Handled missing Review Rating values using category-level median imputation
+
+  ```python
+  df['Review Rating'] = df.groupby('Category')['Review Rating'].transform(lambda x: x.fillna(x.median()))
+  ```
+  
 - Standardized column names using `snake_case`
 - Created meaningful customer **Age Groups**
 - Engineered **Purchase Frequency (Days)**
@@ -176,7 +181,7 @@ Use top-rated and best-selling products in marketing campaigns, bundles and cros
 ### 5. 🎯 Target High-Value Customer Segments
 Prioritize marketing campaigns toward high-revenue age groups and customers demonstrating strong purchase activity.
 
-These recommendations align with the project's business recommendations around subscriptions, loyalty, discounts, product positioning and targeted marketing. :co
+These recommendations align with the project's business recommendations around subscriptions, loyalty, discounts, product positioning and targeted marketing.
 
 ---
 
