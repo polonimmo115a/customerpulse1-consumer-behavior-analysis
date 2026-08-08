@@ -58,5 +58,131 @@ The analysis focuses on answering key business questions around:
 
 ## 🧹 Data Preparation with Python
 
-The dataset contains **3,900 customer transactions and 18 columns**, covering customer demographics, purchasing behavior, product information, discounts, subscriptions, ratings and shipping preferences. :contentReference[oaicite:1]{index=1}
+The dataset contains **3,900 customer transactions and 18 columns**, covering customer demographics, purchasing behavior, product information, discounts, subscriptions, ratings and shipping preferences. 
+
+Key data preparation steps:
+
+- Loaded and explored the dataset using Pandas
+- Performed structural and statistical analysis
+- Handled missing Review Rating values using category-level median imputation
+- Standardized column names using `snake_case`
+- Created meaningful customer **Age Groups**
+- Engineered **Purchase Frequency (Days)**
+- Removed redundant `promo_code_used` information
+- Connected Python with PostgreSQL
+- Loaded the cleaned dataset into PostgreSQL for SQL analysis
+
+---
+
+## 🧠 SQL Business Analysis
+
+PostgreSQL was used to answer practical business questions rather than performing only basic aggregations.
+
+### Key analyses include:
+
+1. **Revenue by Gender**
+   - Compared revenue contribution across male and female customers.
+
+2. **High-Spending Discount Users**
+   - Identified customers who used discounts but still spent above the average purchase amount.
+
+3. **Top-Rated Products**
+   - Identified the top 5 products based on average customer ratings.
+
+4. **Shipping Type Analysis**
+   - Compared average purchase amounts between Standard and Express shipping.
+
+5. **Subscribers vs Non-Subscribers**
+   - Compared spending and revenue contribution across subscription groups.
+
+6. **Discount-Dependent Products**
+   - Identified products with the highest percentage of discounted purchases.
+
+7. **Customer Segmentation**
+   - Classified customers into **New, Returning and Loyal** segments using purchase history.
+
+8. **Top Products by Category**
+   - Identified the top 3 most-purchased products within each category.
+
+9. **Repeat Buyers & Subscription Behavior**
+   - Investigated whether customers with more than 5 purchases are more likely to subscribe.
+
+10. **Revenue by Age Group**
+   - Analyzed revenue contribution across different customer age groups.
+
+---     
+
+## 📊 Power BI Dashboard
+
+The Power BI dashboard provides an interactive view of customer behavior and business performance.
+
+### 📌 Dashboard KPIs
+
+- **3.9K** Customers
+- **$59.76** Average Purchase Amount
+- **3.75** Average Review Rating
+- **27%** Subscription Rate
+
+### 📈 Key Visualizations
+
+- Customer Subscription Distribution
+- Revenue Contribution by Product Category
+- Customer Distribution by Product Category
+- Revenue by Age Group
+- Customer Distribution by Age Group
+- Interactive filters for:
+  - Subscription Status
+  - Gender
+  - Category
+  - Shipping Type
+ 
+ The dashboard enables stakeholders to quickly identify customer segments, high-performing categories and purchasing patterns.
+
+--- 
+
+## 💡 Key Business Insights
+
+### 🔹 Subscription Opportunity
+Only **27% of customers are subscribers**, while **73% are non-subscribers**, highlighting a significant opportunity to improve subscription conversion.
+
+### 🔹 Category Performance
+**Clothing contributes the highest revenue** among the analyzed product categories, making it an important category for revenue-focused campaigns.
+
+### 🔹 Customer Concentration
+Clothing also has the **largest customer base**, indicating strong customer demand and an opportunity for cross-selling and upselling.
+
+### 🔹 Age-Based Revenue
+The **Young Adult segment contributes the highest revenue**, followed by the Middle-aged segment, making these groups valuable targets for targeted marketing campaigns.
+
+### 🔹 Customer Experience
+The overall average review rating of **3.75/5** indicates an opportunity to identify low-rated products and improve customer experience.
+
+---
+
+## 🎯 Business Recommendations
+
+### 1. 🚀 Increase Subscription Conversion
+Introduce exclusive subscriber benefits, personalized offers and loyalty rewards to convert more non-subscribers.
+
+### 2. ❤️ Strengthen Customer Loyalty
+Reward repeat customers and develop loyalty programs to move customers from **Returning → Loyal** segments.
+
+### 3. 💰 Optimize Discount Strategy
+Analyze discount-dependent products carefully to ensure promotional campaigns increase sales without unnecessarily reducing margins.
+
+### 4. 🛍️ Promote High-Performing Products
+Use top-rated and best-selling products in marketing campaigns, bundles and cross-selling strategies.
+
+### 5. 🎯 Target High-Value Customer Segments
+Prioritize marketing campaigns toward high-revenue age groups and customers demonstrating strong purchase activity.
+
+These recommendations align with the project's business recommendations around subscriptions, loyalty, discounts, product positioning and targeted marketing. :co
+
+---
+
+## 📷 Dashboard Preview
+
+![CustomerPulse Dashboard](dashboard.png)
+
+---
 
