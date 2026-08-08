@@ -116,33 +116,112 @@ PostgreSQL was used to answer practical business questions rather than performin
 
 1. **Revenue by Gender**
    - Compared revenue contribution across male and female customers.
+  ```sql
+select gender,sum(purchase_amount) as total_revenue
+from customer1 
+group by gender
+ ```
 
 2. **High-Spending Discount Users**
    - Identified customers who used discounts but still spent above the average purchase amount.
+```sql
+select customer_id,purchase_amount
+from customer1
+where discount_applied='Yes' and purchase_amount>=(select avg(purchase_amount) from customer1)
+```
 
 3. **Top-Rated Products**
    - Identified the top 5 products based on average customer ratings.
+```sql
+select item_purchased,round(avg(review_rating::numeric),2) as avg_product_rating
+from customer1
+group by item_purchased
+order by avg_product_rating desc
+limit 5
+```
+     
 
 4. **Shipping Type Analysis**
    - Compared average purchase amounts between Standard and Express shipping.
+```sql
+select shipping_type,avg(purchase_amount) as avg_purchase_amt
+from customer1
+where shipping_type in ('Standard','Express')
+group by shipping_type
+```
+
 
 5. **Subscribers vs Non-Subscribers**
    - Compared spending and revenue contribution across subscription groups.
+```sql
+select subscription_status,count(customer_id),round(avg(purchase_amount),2) as avg_spend,sum(purchase_amount) as total_revenue
+from customer1
+group by subscription_status
+order by avg_spend desc,total_revenue desc
+limit 10
+```
 
 6. **Discount-Dependent Products**
    - Identified products with the highest percentage of discounted purchases.
+```sql
+select item_purchased,round(100*sum(case when discount_applied='Yes' then 1 else 0 end)/count(*),2) as discount_rate
+from customer1
+group by item_purchased
+order by discount_rate desc
+limit 5
+```
 
 7. **Customer Segmentation**
    - Classified customers into **New, Returning and Loyal** segments using purchase history.
+```sql
+with customer_type as (
+SELECT customer_id, previous_purchases,
+CASE 
+    WHEN previous_purchases = 1 THEN 'New'
+    WHEN previous_purchases BETWEEN 2 AND 10 THEN 'Returning'
+    ELSE 'Loyal'
+    END AS customer_segment
+FROM customer1)
+
+select customer_segment,count(*) AS "Number of Customers" 
+from customer_type 
+group by customer_segment;
+```
+
 
 8. **Top Products by Category**
    - Identified the top 3 most-purchased products within each category.
+```sql
+with item_counts as (
+select category,item_purchased,
+count(customer_id) as total_orders,
+row_number() over(partition by category order by count(customer_id) desc) as item_rnk
+from customer1
+group by 1,2
+)
+select item_rnk,category,item_purchased,total_orders
+from item_counts
+where item_rnk<=3
+```
 
 9. **Repeat Buyers & Subscription Behavior**
    - Investigated whether customers with more than 5 purchases are more likely to subscribe.
+```sql
+SELECT subscription_status,
+       COUNT(customer_id) AS repeat_buyers
+FROM customer1
+WHERE previous_purchases > 5
+GROUP BY subscription_status;
+```
 
 10. **Revenue by Age Group**
    - Analyzed revenue contribution across different customer age groups.
+```sql
+select age_group,sum(purchase_amount) as total_revenue
+from customer1
+group by age_group
+order by total_revenue desc
+```
 
 ---     
 
